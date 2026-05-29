@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://c8guh6hvhsop6"]
 
+[ext_resource type="Script" uid="uid://dloyn4ex6ullo" path="res://dashboard.gd" id="1_cxvxm"]
 [ext_resource type="FontFile" uid="uid://bpauqcju7rmfp" path="res://ArchivoBlack-Regular.ttf" id="1_pj1bh"]
 [ext_resource type="Texture2D" uid="uid://0rvlygmwjr6f" path="res://clipboard.png" id="2_cyq2i"]
 [ext_resource type="Texture2D" uid="uid://drp4k1qbgnfug" path="res://coy_muse-telegram-7509788_640.png" id="2_pmcx6"]
 [ext_resource type="Texture2D" uid="uid://d2nmdttspv815" path="res://clipboard-check-fill.svg" id="3_3f5yb"]
 [ext_resource type="Texture2D" uid="uid://caqql7ok61vn1" path="res://clipboard-check-fill.png" id="4_cxvxm"]
+[ext_resource type="Texture2D" uid="uid://i5ai8c1die6j" path="res://restart.png" id="6_3f5yb"]
+
+[sub_resource type="Curve" id="Curve_3f5yb"]
+_data = [Vector2(0.15425533, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.56382984, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.28804952, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcx6"]
 bg_color = Color(0, 0.9019608, 0.4627451, 0.4509804)
@@ -32,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_cxvxm")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=701290869]
 layout_mode = 1
@@ -41,6 +48,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=991544615]
+position = Vector2(270, 585)
+amount = 25
+lifetime = 0.83
+preprocess = 6.0
+randomness = 0.11
+emission_shape = 3
+emission_rect_extents = Vector2(270, 5850)
+direction = Vector2(0.5, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 8.0
+scale_amount_max = 18.0
+scale_amount_curve = SubResource("Curve_3f5yb")
+color = Color(0.18039216, 0.8, 0.44313726, 0.7647059)
 
 [node name="Panel" type="Panel" parent="." unique_id=594037189]
 layout_mode = 0
@@ -61,8 +85,6 @@ BEEN GENRATED!"
 label_settings = SubResource("LabelSettings_rnicy")
 horizontal_alignment = 1
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=991544615]
-
 [node name="TextureButton" type="TextureButton" parent="." unique_id=2145253630]
 layout_mode = 0
 offset_left = 393.0
@@ -75,23 +97,32 @@ texture_hover = ExtResource("4_cxvxm")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TextureButton2" type="TextureButton" parent="." unique_id=394178233]
+[node name="ShareButton" type="TextureButton" parent="." unique_id=394178233]
 layout_mode = 0
-offset_left = 29.0
-offset_top = 438.0
-offset_right = 241.0
-offset_bottom = 622.0
+offset_left = 45.0
+offset_top = 433.0
+offset_right = 257.0
+offset_bottom = 619.0
 texture_normal = ExtResource("2_pmcx6")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="Label2" type="Label" parent="." unique_id=1604555238]
+[node name="TextureButton3" type="TextureButton" parent="." unique_id=1840056531]
+layout_mode = 0
+offset_left = 272.0
+offset_top = 396.0
+offset_right = 485.0
+offset_bottom = 658.0
+texture_normal = ExtResource("6_3f5yb")
+ignore_texture_size = true
+stretch_mode = 6
+
+[node name="LinkLabel" type="Label" parent="." unique_id=1604555238]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 292.0
 offset_right = 323.0
 offset_bottom = 320.0
-text = "http://gautam/incog.com"
 label_settings = SubResource("LabelSettings_cyq2i")
 
 [node name="Panel2" type="Panel" parent="." unique_id=1909556395]
@@ -101,3 +132,6 @@ offset_top = 281.0
 offset_right = 400.0
 offset_bottom = 336.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cyq2i")
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="ShareButton" to="." method="_on_share_button_pressed"]
