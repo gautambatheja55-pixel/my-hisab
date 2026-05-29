@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://dhb6gu73uyspa"]
+
+[ext_resource type="Script" uid="uid://coiqvjq7fxtsu" path="res://login_screen.gd" id="1_wplbs"]
+[ext_resource type="Texture2D" uid="uid://bmp2jq2dusnav" path="res://Google_logo.png" id="2_7xvqn"]
+
+[sub_resource type="Curve" id="Curve_7xvqn"]
+_data = [Vector2(0.14893618, 0.011235952), 0.0, 0.0, 0, 0, Vector2(0.5265958, 0.59550565), 0.0, 0.0, 0, 0, Vector2(1, 0.04494381), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7xvqn"]
+content_margin_left = 20.0
+content_margin_top = 10.0
+content_margin_right = 20.0
+content_margin_bottom = 10.0
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7xvqn"]
+
+[node name="LoginScreen" type="Control" unique_id=2044940110]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wplbs")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1628468612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07058824, 0.07058824, 0.07058824, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=2085755991]
+position = Vector2(270, 585)
+amount = 40
+lifetime = 6.0
+preprocess = 6.0
+randomness = 0.11
+emission_shape = 3
+emission_rect_extents = Vector2(270, 5850)
+direction = Vector2(0.5, -1)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 25.0
+scale_amount_min = 8.0
+scale_amount_max = 18.0
+scale_amount_curve = SubResource("Curve_7xvqn")
+color = Color(0.18039216, 0.8, 0.44313726, 0.7647059)
+
+[node name="MainLayout" type="CenterContainer" parent="." unique_id=622449465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ContentStack" type="VBoxContainer" parent="MainLayout" unique_id=340784159]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="SpacerTop" type="Control" parent="MainLayout/ContentStack" unique_id=667115028]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AppTitle" type="Label" parent="MainLayout/ContentStack" unique_id=1147353491]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_colors/font_color = Color(0, 0.9019608, 0.4627451, 1)
+theme_override_colors/font_shadow_color = Color(0.18039216, 0.8, 0.44313726, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 56
+text = "MyHisab"
+horizontal_alignment = 1
+
+[node name="SpacerMiddle" type="Control" parent="MainLayout/ContentStack" unique_id=1902790063]
+layout_mode = 2
+
+[node name="GoogleLoginButton" type="Button" parent="MainLayout/ContentStack" unique_id=847844559]
+custom_minimum_size = Vector2(320, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_7xvqn")
+
+[node name="CenterContainer" type="CenterContainer" parent="MainLayout/ContentStack/GoogleLoginButton" unique_id=2086029281]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainLayout/ContentStack/GoogleLoginButton/CenterContainer" unique_id=1517531205]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="MainLayout/ContentStack/GoogleLoginButton/CenterContainer/HBoxContainer" unique_id=1232209447]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("2_7xvqn")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="MainLayout/ContentStack/GoogleLoginButton/CenterContainer/HBoxContainer" unique_id=287017978]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7xvqn")
+text = "Sign in with Google"
+
+[node name="SpacerBottom" type="Control" parent="MainLayout/ContentStack" unique_id=269269854]
+layout_mode = 2
+
+[connection signal="pressed" from="MainLayout/ContentStack/GoogleLoginButton" to="." method="_on_google_login_button_pressed"]
