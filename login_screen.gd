@@ -11,4 +11,4 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_google_login_button_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://Dashboard.tscn")

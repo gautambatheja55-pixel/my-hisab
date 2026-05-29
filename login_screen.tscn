@@ -78,7 +78,7 @@ theme_override_colors/font_color = Color(0, 0.9019608, 0.4627451, 1)
 theme_override_colors/font_shadow_color = Color(0.18039216, 0.8, 0.44313726, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 56
-text = "MyHisab"
+text = "InCog"
 horizontal_alignment = 1
 
 [node name="SpacerMiddle" type="Control" parent="MainLayout/ContentStack" unique_id=1902790063]

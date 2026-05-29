@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://c8guh6hvhsop6"]
+
+[ext_resource type="FontFile" uid="uid://bpauqcju7rmfp" path="res://ArchivoBlack-Regular.ttf" id="1_pj1bh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcx6"]
+bg_color = Color(0.20152655, 0.20152661, 0.20152646, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="LabelSettings" id="LabelSettings_rnicy"]
+font = ExtResource("1_pj1bh")
+font_size = 45
+
+[node name="Dashboard" type="Control" unique_id=371379491]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Bg" type="ColorRect" parent="." unique_id=701290869]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.646029, 0.646029, 0.646029, 1)
+
+[node name="Panel" type="Panel" parent="." unique_id=594037189]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 68.0
+offset_right = 509.0
+offset_bottom = 349.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pmcx6")
+
+[node name="Label" type="Label" parent="." unique_id=79568706]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 102.0
+offset_right = 490.0
+offset_bottom = 205.0
+text = "YOUR LINK HAS 
+BEEN GENRATED!"
+label_settings = SubResource("LabelSettings_rnicy")
+horizontal_alignment = 1
