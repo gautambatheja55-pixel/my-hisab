@@ -13,11 +13,13 @@ func _on_share_button_pressed() -> void:
 	var share_text="Send me anonymous messages! " + link_label.text
 	
 	if OS.get_name()=="Android":
-		if Engine.has_singleton("AndroidShare"):
-			var share_plugin=Engine.get_singleton("AndroidShare")
-			share_plugin.share_text("My InCog Link","Share Link",share_text)
-		else:
-			DisplayServer.clipboard_set(share_text)
-	else:
-		DisplayServer.clipboard_set(share_text)
-		
+		if Engine.has_singleton("SharePlugin"):
+			var share_plugin = Share.new()
+			add_child(share_plugin)
+			share_plugin.share_text(
+				"",
+				"",
+				share_text
+			)
+	
+	
