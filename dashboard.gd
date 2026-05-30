@@ -1,6 +1,6 @@
 extends Control
-@onready var link_label: Label = $LinkLabel
-@onready var share_button: TextureButton = $ShareButton
+@onready var link_label: Label = $ScrollContainer/Control/LinkLabel
+@onready var share_button: TextureButton = $ScrollContainer/Control/ShareButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

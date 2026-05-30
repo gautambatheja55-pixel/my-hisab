@@ -40,17 +40,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cxvxm")
 
-[node name="Bg" type="ColorRect" parent="." unique_id=701290869]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=991544615]
-position = Vector2(270, 585)
+position = Vector2(270, -1500)
 amount = 25
 lifetime = 0.83
 preprocess = 6.0
@@ -66,7 +57,35 @@ scale_amount_max = 18.0
 scale_amount_curve = SubResource("Curve_3f5yb")
 color = Color(0.18039216, 0.8, 0.44313726, 0.7647059)
 
-[node name="Panel" type="Panel" parent="." unique_id=594037189]
+[node name="Bg" type="ColorRect" parent="." unique_id=701290869]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 865.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=872227933]
+custom_minimum_size = Vector2(100, -200)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Panel" parent="ScrollContainer" unique_id=263307686]
+custom_minimum_size = Vector2(530, 2000)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 1
+
+[node name="Panel" type="Panel" parent="ScrollContainer/Control" unique_id=403640891]
 layout_mode = 0
 offset_left = 27.0
 offset_top = 96.0
@@ -74,7 +93,7 @@ offset_right = 512.0
 offset_bottom = 377.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pmcx6")
 
-[node name="Label" type="Label" parent="." unique_id=79568706]
+[node name="Label" type="Label" parent="ScrollContainer/Control" unique_id=1081031329]
 layout_mode = 0
 offset_left = 49.0
 offset_top = 130.0
@@ -85,39 +104,42 @@ BEEN GENRATED!"
 label_settings = SubResource("LabelSettings_rnicy")
 horizontal_alignment = 1
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=2145253630]
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/Control" unique_id=1914108413]
 layout_mode = 0
 offset_left = 393.0
 offset_top = 280.0
 offset_right = 501.0
 offset_bottom = 335.0
+mouse_filter = 1
 texture_normal = ExtResource("2_cyq2i")
 texture_pressed = ExtResource("3_3f5yb")
 texture_hover = ExtResource("4_cxvxm")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ShareButton" type="TextureButton" parent="." unique_id=394178233]
+[node name="ShareButton" type="TextureButton" parent="ScrollContainer/Control" unique_id=4003287]
 layout_mode = 0
 offset_left = 45.0
 offset_top = 433.0
 offset_right = 257.0
 offset_bottom = 619.0
+mouse_filter = 1
 texture_normal = ExtResource("2_pmcx6")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TextureButton3" type="TextureButton" parent="." unique_id=1840056531]
+[node name="TextureButton3" type="TextureButton" parent="ScrollContainer/Control" unique_id=1143940569]
 layout_mode = 0
 offset_left = 272.0
 offset_top = 396.0
 offset_right = 485.0
 offset_bottom = 658.0
+mouse_filter = 1
 texture_normal = ExtResource("6_3f5yb")
 ignore_texture_size = true
 stretch_mode = 6
 
-[node name="LinkLabel" type="Label" parent="." unique_id=1604555238]
+[node name="LinkLabel" type="Label" parent="ScrollContainer/Control" unique_id=465937774]
 layout_mode = 0
 offset_left = 80.0
 offset_top = 292.0
@@ -125,7 +147,7 @@ offset_right = 323.0
 offset_bottom = 320.0
 label_settings = SubResource("LabelSettings_cyq2i")
 
-[node name="Panel2" type="Panel" parent="." unique_id=1909556395]
+[node name="Panel2" type="Panel" parent="ScrollContainer/Control" unique_id=374735359]
 layout_mode = 0
 offset_left = 52.0
 offset_top = 281.0
@@ -133,5 +155,5 @@ offset_right = 400.0
 offset_bottom = 336.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cyq2i")
 
-[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
-[connection signal="pressed" from="ShareButton" to="." method="_on_share_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/Control/ShareButton" to="." method="_on_share_button_pressed"]
