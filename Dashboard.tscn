@@ -4,6 +4,7 @@
 [ext_resource type="FontFile" uid="uid://bpauqcju7rmfp" path="res://ArchivoBlack-Regular.ttf" id="1_pj1bh"]
 [ext_resource type="Texture2D" uid="uid://0rvlygmwjr6f" path="res://clipboard.png" id="2_cyq2i"]
 [ext_resource type="Texture2D" uid="uid://drp4k1qbgnfug" path="res://coy_muse-telegram-7509788_640.png" id="2_pmcx6"]
+[ext_resource type="Script" uid="uid://b1503dqi7opda" path="res://COLORTITLE.gd" id="2_x4dsd"]
 [ext_resource type="Texture2D" uid="uid://d2nmdttspv815" path="res://clipboard-check-fill.svg" id="3_3f5yb"]
 [ext_resource type="Texture2D" uid="uid://caqql7ok61vn1" path="res://clipboard-check-fill.png" id="4_cxvxm"]
 [ext_resource type="Texture2D" uid="uid://i5ai8c1die6j" path="res://restart.png" id="6_3f5yb"]
@@ -97,6 +98,7 @@ offset_top = 96.0
 offset_right = 512.0
 offset_bottom = 377.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_pmcx6")
+script = ExtResource("2_x4dsd")
 
 [node name="Label" type="Label" parent="ScrollContainer/Control" unique_id=1081031329]
 layout_mode = 0

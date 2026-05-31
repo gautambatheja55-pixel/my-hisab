@@ -6,7 +6,7 @@ extends Control
 const MESSAGE_CARD=preload("res://panel.tscn")
 
 var messages=[
-	{"text":"Who's your crush?",
+	{"text":"What ur name?",
 	"time":"1 min ago"}
 	,
 	{"text":"Favourite Teacher?",

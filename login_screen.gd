@@ -7,3 +7,6 @@ func _ready() -> void:
 	
 func _on_google_login_button_pressed() -> void:
 	get_tree().call_deferred("change_scene_to_file","res://Dashboard.tscn")
+
+func _on_button_pressed() -> void:
+	get_tree().call_deferred("change_scene_to_file","res://Dashboard.tscn")
