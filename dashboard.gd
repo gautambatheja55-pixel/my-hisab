@@ -4,6 +4,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_tree().set_quit_on_go_back(true)
 	link_label.text="http://gautam/incog.com"
 
 func _on_texture_button_pressed() -> void:

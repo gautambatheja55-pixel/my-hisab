@@ -7,10 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://d2nmdttspv815" path="res://clipboard-check-fill.svg" id="3_3f5yb"]
 [ext_resource type="Texture2D" uid="uid://caqql7ok61vn1" path="res://clipboard-check-fill.png" id="4_cxvxm"]
 [ext_resource type="Texture2D" uid="uid://i5ai8c1die6j" path="res://restart.png" id="6_3f5yb"]
+[ext_resource type="PackedScene" uid="uid://dmxesp07wnpqp" path="res://panel.tscn" id="8_x4dsd"]
 
 [sub_resource type="Curve" id="Curve_3f5yb"]
 _data = [Vector2(0.15425533, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.56382984, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.28804952, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cxvxm"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmcx6"]
 bg_color = Color(0, 0.9019608, 0.4627451, 0.4509804)
@@ -40,6 +43,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cxvxm")
 
+[node name="Bg" type="ColorRect" parent="." unique_id=701290869]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.039
+anchor_bottom = 1.6910001
+offset_right = -21.059998
+offset_bottom = 951.5299
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=991544615]
 position = Vector2(270, -1500)
 amount = 25
@@ -57,16 +71,6 @@ scale_amount_max = 18.0
 scale_amount_curve = SubResource("Curve_3f5yb")
 color = Color(0.18039216, 0.8, 0.44313726, 0.7647059)
 
-[node name="Bg" type="ColorRect" parent="." unique_id=701290869]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 865.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
 [node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=872227933]
 custom_minimum_size = Vector2(100, -200)
 layout_mode = 1
@@ -74,9 +78,10 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = -2.0
-offset_bottom = -6.0
+offset_bottom = 252.0
 grow_horizontal = 2
 grow_vertical = 2
+vertical_scroll_mode = 3
 
 [node name="Control" type="Panel" parent="ScrollContainer" unique_id=263307686]
 custom_minimum_size = Vector2(530, 2000)
@@ -84,6 +89,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_cxvxm")
 
 [node name="Panel" type="Panel" parent="ScrollContainer/Control" unique_id=403640891]
 layout_mode = 0
@@ -154,6 +160,42 @@ offset_top = 281.0
 offset_right = 400.0
 offset_bottom = 336.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_cyq2i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Control" unique_id=563104613]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 722.0
+offset_right = 476.0
+offset_bottom = 1102.0
+theme_override_constants/separation = 20
+
+[node name="Panel" parent="ScrollContainer/Control/VBoxContainer" unique_id=351568958 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel2" parent="ScrollContainer/Control/VBoxContainer" unique_id=466320036 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel4" parent="ScrollContainer/Control/VBoxContainer" unique_id=1324415546 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel5" parent="ScrollContainer/Control/VBoxContainer" unique_id=362835021 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel6" parent="ScrollContainer/Control/VBoxContainer" unique_id=1678699078 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel7" parent="ScrollContainer/Control/VBoxContainer" unique_id=1418542089 instance=ExtResource("8_x4dsd")]
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Panel3" type="Panel" parent="ScrollContainer/Control/VBoxContainer" unique_id=870584200]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
 
 [connection signal="pressed" from="ScrollContainer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/Control/ShareButton" to="." method="_on_share_button_pressed"]

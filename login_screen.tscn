@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhb6gu73uyspa"]
 
 [ext_resource type="Script" uid="uid://coiqvjq7fxtsu" path="res://login_screen.gd" id="1_wplbs"]
+[ext_resource type="FontFile" uid="uid://by5lqqtg4x2tq" path="res://RubikDoodleTriangles-Regular.ttf" id="2_3u8nt"]
 [ext_resource type="Texture2D" uid="uid://bmp2jq2dusnav" path="res://Google_logo.png" id="2_7xvqn"]
 
 [sub_resource type="Curve" id="Curve_7xvqn"]
@@ -77,7 +78,8 @@ size_flags_vertical = 6
 theme_override_colors/font_color = Color(0, 0.9019608, 0.4627451, 1)
 theme_override_colors/font_shadow_color = Color(0.18039216, 0.8, 0.44313726, 1)
 theme_override_constants/outline_size = 2
-theme_override_font_sizes/font_size = 56
+theme_override_fonts/font = ExtResource("2_3u8nt")
+theme_override_font_sizes/font_size = 80
 text = "InCog"
 horizontal_alignment = 1
 
