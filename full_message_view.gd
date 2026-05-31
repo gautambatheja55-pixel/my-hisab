@@ -1,8 +1,9 @@
 extends Control
+@onready var label: Label = $ContentLayout/Label
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	label.text=MessageData.selected_message
 	get_tree().set_quit_on_go_back(false)
 
 func _notification(what: int) -> void:

@@ -2,10 +2,40 @@
 
 [ext_resource type="Script" uid="uid://dvloqaa0vmres" path="res://full_message_view.gd" id="1_eo1fx"]
 [ext_resource type="FontFile" uid="uid://bpauqcju7rmfp" path="res://ArchivoBlack-Regular.ttf" id="2_tkoxo"]
+[ext_resource type="Script" uid="uid://bnr6vu32bs0kt" path="res://reply_border.gd" id="3_xaihp"]
+[ext_resource type="FontFile" uid="uid://by5lqqtg4x2tq" path="res://RubikDoodleTriangles-Regular.ttf" id="4_ggrp4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xaihp"]
 font = ExtResource("2_tkoxo")
 font_size = 35
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ggrp4"]
+bg_color = Color(0.6241978, 0.53177106, 0.9157438, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ridxr"]
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8k57n"]
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_riyjt"]
+bg_color = Color(0.08235294, 0.08235294, 0.08235294, 1)
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="FullMessageView" type="Control" unique_id=1801574696]
 layout_mode = 3
@@ -53,21 +83,32 @@ text = "1 min ago"
 [node name="Label" type="Label" parent="ContentLayout" unique_id=399261344]
 custom_minimum_size = Vector2(500, 80)
 layout_mode = 2
-text = "This is where the full anonymous text will be loaded dynamically by my script..."
 label_settings = SubResource("LabelSettings_xaihp")
 autowrap_mode = 3
 
 [node name="Control" type="Control" parent="ContentLayout" unique_id=1291259811]
 layout_mode = 2
 
-[node name="TextureButton" type="TextureButton" parent="." unique_id=1151014557]
-custom_minimum_size = Vector2(500, 150)
+[node name="ReplyBorder" type="Panel" parent="." unique_id=941174017]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_left = 81.0
+offset_top = 670.0
+offset_right = 438.0
+offset_bottom = 763.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ggrp4")
+script = ExtResource("3_xaihp")
+
+[node name="Button" type="Button" parent="ReplyBorder" unique_id=1929183833]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 10.0
+offset_right = 353.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("4_ggrp4")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxFlat_ridxr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8k57n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_riyjt")
+text = "REPLY"
 
 [connection signal="pressed" from="ContentLayout/HBoxContainer/Button" to="." method="_on_button_pressed"]

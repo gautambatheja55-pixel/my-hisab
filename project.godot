@@ -16,6 +16,10 @@ config/quit_on_go_back=false
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MessageData="*uid://b10cvr6rtiusj"
+
 [display]
 
 window/size/viewport_width=540
