@@ -111,6 +111,7 @@ layout_mode = 2
 [node name="GoogleLoginButton" type="Button" parent="MainLayout/ContentStack" unique_id=847844559]
 custom_minimum_size = Vector2(320, 50)
 layout_mode = 2
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_7xvqn")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_3u8nt")
