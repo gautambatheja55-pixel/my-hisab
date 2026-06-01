@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="MyHisab"
+config/name="my-hisab"
 run/main_scene="uid://dhb6gu73uyspa"
 config/quit_on_go_back=false
 config/features=PackedStringArray("4.6", "GL Compatibility")
@@ -30,7 +30,7 @@ window/handheld/orientation=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SharePlugin/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/GodotGoogleSignIn/plugin.cfg", "res://addons/SharePlugin/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [input_devices]
 
