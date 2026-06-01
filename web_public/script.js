@@ -23,6 +23,7 @@ const app = initializeApp(firebaseConfig);
 const db=getDatabase(app);
 const sendBtn = document.getElementById("sendBtn");
 const messageInput=document.getElementById("message");
+
 console.log("This is the new version running...")
 sendBtn.addEventListener("click",() => {
     const messageText=messageInput.value;

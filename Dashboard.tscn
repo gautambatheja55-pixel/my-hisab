@@ -176,5 +176,7 @@ offset_right = 476.0
 offset_bottom = 1102.0
 theme_override_constants/separation = 20
 
+[node name="FirebaseMessagesRequest" type="HTTPRequest" parent="." unique_id=1364886220]
+
 [connection signal="pressed" from="ScrollContainer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/Control/ShareButton" to="." method="_on_share_button_pressed"]

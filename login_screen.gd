@@ -20,10 +20,18 @@ func _on_google_login_button_pressed() -> void:
 func _on_sign_in_success(
 	id_token:String,
 	email:String,
-	display_name:String):
-	get_tree().call_deferred("change_scene_to_file","res://Dashboard.tscn")
-	
-
+	display_name:String
+	):
+		var public_id=correcing(display_name)+"-"+genrate_suffix()
+		var user_dynamic_link="https://incog-c7772.web.app/" + public_id
+		var dashboard_scene = load("res://Dashboard.tscn")
+		var dashboard_instance = dashboard_scene.instantiate()
+		if dashboard_instance.has_method("initialize_user_dashboard"):
+			dashboard_instance.initialize_user_dashboard(public_id, user_dynamic_link)
+		get_tree().root.add_child(dashboard_instance)
+		get_tree().current_scene.queue_free()
+		get_tree().current_scene = dashboard_instance
+		
 func _on_sign_in_failed(error:String):
 	print(error)
 	
@@ -31,8 +39,14 @@ func correcing(display_name):
 	user_name=display_name.to_lower()
 	user_name=user_name.replace(" ","-")
 	user_name=user_name.replace("_","-")
-	var regex = RegEx.create_from_string("[^a-z0-9-]")
-	return regex.replace(user_name, "", true)
+	return user_name
+
+func genrate_suffix():
+	var chars="qwertyuiopasdfghjklzxcvbnm1234567890"
+	var results=""
+	for i in range(6):
+		results+=chars[randi() % chars.length()]
+	return results
 
 func _on_button_pressed() -> void:
 	if google_sign_in:

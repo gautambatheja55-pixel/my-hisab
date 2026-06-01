@@ -2,37 +2,28 @@ extends Control
 @onready var link_label: Label = $ScrollContainer/Control/LinkLabel
 @onready var share_button: TextureButton = $ScrollContainer/Control/ShareButton
 @onready var inbox: VBoxContainer = $ScrollContainer/Control/VBoxContainer
+@onready var firebase_messages_request: HTTPRequest = $FirebaseMessagesRequest
 
 const MESSAGE_CARD=preload("res://panel.tscn")
-
-var messages=[
-	{"text":"What ur name?",
-	"time":"1 min ago"}
-	,
-	{"text":"Favourite Teacher?",
-	"time":"5 min ago"}
-	,
-	{"text":"ek baccha kedernath mai ghanti nhi baja paa rha hai",
-	"time":"15 min ago"}]
+var current_public_id: String = ""
+var my_shareable_link: String = ""
 
 func _ready() -> void:
-	for msg in messages:
-		var card=MESSAGE_CARD.instantiate()
-		inbox.add_child(card)
-		card.setup_card(
-			msg["text"],
-			msg["time"]
-		)
-		
+	
 	get_tree().set_quit_on_go_back(true)
-	link_label.text="http://gautam/incog.com"
-
+	if my_shareable_link != "":
+		if my_shareable_link.length() > 23:
+			link_label.text = my_shareable_link.substr(0, 32) + "..."
+		else:
+			link_label.text = my_shareable_link
+	fetch_messages()
+	firebase_messages_request.request_completed.connect(_on_messages_recieved)
+	
 func _on_texture_button_pressed() -> void:
 	DisplayServer.clipboard_set(link_label.text)
 
 func _on_share_button_pressed() -> void:
 	var share_text="Send me anonymous messages! " + link_label.text
-	
 	if OS.get_name()=="Android":
 		if Engine.has_singleton("SharePlugin"):
 			var share_plugin = Share.new()
@@ -42,5 +33,35 @@ func _on_share_button_pressed() -> void:
 				"",
 				share_text
 			)
+			
+func initialize_user_dashboard(public_id: String, dynamic_link: String) -> void:
+	print("Initialize user dashboard working with link: "+ dynamic_link)
+	current_public_id = public_id
+	my_shareable_link = dynamic_link
+	if is_instance_valid(link_label):
+		link_label.text = my_shareable_link
+		
+func fetch_messages():
+	if current_public_id=="":
+		print("No public id found")
+		return
+	var url="https://incog-c7772-default-rtdb.asia-southeast1.firebasedatabase.app/messages/"+current_public_id+"/messages.json"
+	firebase_messages_request.request(url)
 	
-	
+func _on_messages_recieved(result:int,response_code:int,headers:PackedStringArray,body:PackedByteArray):
+	if response_code==200:
+		var json_string=body.get_string_from_utf8()
+		var json=JSON.new()
+		var parse_result=json.parse(json_string)
+		if parse_result==OK:
+			var data=json.get_data()
+			if data!=null and data is Dictionary:
+				for message_key in data:
+					var msg_data=data[message_key]
+					var card=MESSAGE_CARD.instantiate()
+					inbox.add_child(card)
+					card.setup_card(msg_data["text"],msg_data["time"])
+			else:
+				print("Inbox empty")
+		else:
+			print("Failed",response_code)

@@ -16,7 +16,7 @@ func _on_button_pressed() -> void:
 func setup_card(message_text,time_text):
 	full_message=message_text
 	TIME=time_text
-	if message_text.length()>5:
+	if message_text.length()>=12:
 		label.text=message_text.substr(0,12) + "..."
 		time_label.text=time_text
 	else:
