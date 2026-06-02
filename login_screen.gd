@@ -22,7 +22,17 @@ func _on_sign_in_success(
 	email:String,
 	display_name:String
 	):
-		var public_id=correcing(display_name)+"-"+genrate_suffix()
+		var config=ConfigFile.new()
+		var public_id=""
+		var load_error=config.load("user://user_profile.cfg")
+		if load_error ==  OK and config.has_section_key("identity","public_id"):
+			public_id=config.get_value("identity","public_id")
+			print("Welcome back "+public_id)
+		else:
+			public_id=correcing(display_name)+"-"+genrate_suffix()
+			config.set_value("identity","public_id",public_id)
+			config.save("user://user_profile.cfg")
+			print("Id saved permanently "+public_id)
 		var user_dynamic_link="https://incog-c7772.web.app/" + public_id
 		var dashboard_scene = load("res://Dashboard.tscn")
 		var dashboard_instance = dashboard_scene.instantiate()

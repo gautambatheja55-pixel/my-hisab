@@ -18,7 +18,7 @@ const firebaseConfig = {
     appId: "1:987101017989:web:fa84da5d8fc564b0e6f6ec"
   };
 
-const recipient=window.location.pathname.split("/")[2];
+const recipient=window.location.pathname.split("/")[1];
 const app = initializeApp(firebaseConfig);
 const db=getDatabase(app);
 const sendBtn = document.getElementById("sendBtn");
@@ -32,7 +32,7 @@ sendBtn.addEventListener("click",() => {
         return;
     }
     
-    push(ref(db,"messages/" + recipient),{
+    push(ref(db,"users/" + recipient + "/messages"),{
         text:messageText,
         time:Date.now()
     }).then(() => {

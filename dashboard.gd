@@ -9,7 +9,6 @@ var current_public_id: String = ""
 var my_shareable_link: String = ""
 
 func _ready() -> void:
-	
 	get_tree().set_quit_on_go_back(true)
 	if my_shareable_link != "":
 		if my_shareable_link.length() > 23:
@@ -45,7 +44,7 @@ func fetch_messages():
 	if current_public_id=="":
 		print("No public id found")
 		return
-	var url="https://incog-c7772-default-rtdb.asia-southeast1.firebasedatabase.app/messages/"+current_public_id+"/messages.json"
+	var url="https://incog-c7772-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+current_public_id+"/messages/.json"
 	firebase_messages_request.request(url)
 	
 func _on_messages_recieved(result:int,response_code:int,headers:PackedStringArray,body:PackedByteArray):
