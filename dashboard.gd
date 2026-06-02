@@ -3,6 +3,7 @@ extends Control
 @onready var share_button: TextureButton = $ScrollContainer/Control/ShareButton
 @onready var inbox: VBoxContainer = $ScrollContainer/Control/VBoxContainer
 @onready var firebase_messages_request: HTTPRequest = $FirebaseMessagesRequest
+@onready var firebase_listener: Node = $FirebaseListener
 
 const MESSAGE_CARD=preload("res://panel.tscn")
 var current_public_id: String = ""
@@ -10,13 +11,15 @@ var my_shareable_link: String = ""
 
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(true)
+	firebase_messages_request.request_completed.connect(_on_messages_recieved)
 	if my_shareable_link != "":
-		if my_shareable_link.length() > 23:
-			link_label.text = my_shareable_link.substr(0, 32) + "..."
+		if my_shareable_link.length() > 13:
+			link_label.text = my_shareable_link.substr(0, 13) + "..."
 		else:
 			link_label.text = my_shareable_link
+	firebase_listener.start_stream(current_public_id)
 	fetch_messages()
-	firebase_messages_request.request_completed.connect(_on_messages_recieved)
+	
 	
 func _on_texture_button_pressed() -> void:
 	DisplayServer.clipboard_set(link_label.text)
@@ -37,20 +40,21 @@ func initialize_user_dashboard(public_id: String, dynamic_link: String) -> void:
 	print("Initialize user dashboard working with link: "+ dynamic_link)
 	current_public_id = public_id
 	my_shareable_link = dynamic_link
-	if is_instance_valid(link_label):
-		link_label.text = my_shareable_link
-		
+	
 func fetch_messages():
 	if current_public_id=="":
 		print("No public id found")
 		return
-	var url="https://incog-c7772-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+current_public_id+"/messages/.json"
+	var url="https://incog-c7772-default-rtdb.asia-southeast1.firebasedatabase.app/users/"+current_public_id+"/messages.json"
+	print("URL: "+url)
 	firebase_messages_request.request(url)
 	
 func _on_messages_recieved(result:int,response_code:int,headers:PackedStringArray,body:PackedByteArray):
 	if response_code==200:
 		var json_string=body.get_string_from_utf8()
 		var json=JSON.new()
+		print("RAW JSON:")
+		print(json_string)
 		var parse_result=json.parse(json_string)
 		if parse_result==OK:
 			var data=json.get_data()
@@ -64,3 +68,5 @@ func _on_messages_recieved(result:int,response_code:int,headers:PackedStringArra
 				print("Inbox empty")
 		else:
 			print("Failed",response_code)
+			print("JSON error line:", json.get_error_line())
+			print("JSON error message:", json.get_error_message())

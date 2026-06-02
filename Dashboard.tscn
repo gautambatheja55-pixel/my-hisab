@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d2nmdttspv815" path="res://clipboard-check-fill.svg" id="3_3f5yb"]
 [ext_resource type="Texture2D" uid="uid://caqql7ok61vn1" path="res://clipboard-check-fill.png" id="4_cxvxm"]
 [ext_resource type="Texture2D" uid="uid://i5ai8c1die6j" path="res://restart.png" id="6_3f5yb"]
+[ext_resource type="Script" uid="uid://cpv5uifrisdvs" path="res://firebase_listener.gd" id="9_cl7ws"]
 
 [sub_resource type="Curve" id="Curve_3f5yb"]
 _data = [Vector2(0.15425533, 0.04494381), 0.0, 0.0, 0, 0, Vector2(0.56382984, 0.55056185), 0.0, 0.0, 0, 0, Vector2(1, 0.033707857), 0.28804952, 0.0, 0, 0]
@@ -177,6 +178,9 @@ offset_bottom = 1102.0
 theme_override_constants/separation = 20
 
 [node name="FirebaseMessagesRequest" type="HTTPRequest" parent="." unique_id=1364886220]
+
+[node name="FirebaseListener" type="Node" parent="." unique_id=1502548300]
+script = ExtResource("9_cl7ws")
 
 [connection signal="pressed" from="ScrollContainer/Control/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="ScrollContainer/Control/ShareButton" to="." method="_on_share_button_pressed"]

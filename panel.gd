@@ -18,7 +18,7 @@ func setup_card(message_text,time_text):
 	TIME=time_text
 	if message_text.length()>=12:
 		label.text=message_text.substr(0,12) + "..."
-		time_label.text=time_text
+		time_label.text=str(time_text)
 	else:
 		label.text=message_text
-		time_label.text=time_text
+		time_label.text=str(time_text)
